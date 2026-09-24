@@ -52,7 +52,7 @@ const fmt = {
   },
   amount: (v) => {
     v = Number(v || 0);
-    return v.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    return v.toLocaleString(undefined, { maximumFractionDigits: 8 });
   },
   time: (ts) => {
     if (!ts) return "—";

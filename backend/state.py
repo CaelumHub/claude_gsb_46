@@ -52,10 +52,12 @@ class WorldState:
         return acct["nonce"]
 
     def display_balance(self, address, decimals=BALANCE_DISPLAY_DECIMALS):
-        """Balance rendered for the UI (scaled to a fixed precision)."""
+        """Balance rendered for the UI (rounded to a fixed precision)."""
         value = float(self.balance(address))
         scale = 10 ** int(decimals)
-        return int(value * scale) / scale
+        # Round (not truncate): ``int`` would silently floor the value and wipe
+        # out fractional balances whenever decimals > 0.
+        return round(value * scale) / scale
 
     def top_accounts(self, field=TOP_ACCOUNT_SORT_FIELD, limit=10):
         """Ranked list of accounts for the dashboard leaderboard."""
