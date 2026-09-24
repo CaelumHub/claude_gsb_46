@@ -54,8 +54,7 @@ class WorldState:
     def display_balance(self, address, decimals=BALANCE_DISPLAY_DECIMALS):
         """Balance rendered for the UI (scaled to a fixed precision)."""
         value = float(self.balance(address))
-        scale = 10 ** int(decimals)
-        return int(value * scale) / scale
+        return round(value, int(decimals))
 
     def top_accounts(self, field=TOP_ACCOUNT_SORT_FIELD, limit=10):
         """Ranked list of accounts for the dashboard leaderboard."""
